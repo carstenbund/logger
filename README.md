@@ -25,10 +25,10 @@ No external libraries are required. The logger uses Python's built-in `logging`,
 Create an instance of the `Logger` class at the beginning of your program. Set the desired log level (`DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL`).
 
 ```python
-from logger import Logger
+from logger import MyLogger
 
 # Create a logger instance
-logger = Logger(log_name='my_application', log_level=logging.INFO).get_logger()
+logger = MyLogger(log_name='my_application', log_level=logging.INFO).get_logger()
 ```
 
 ### 2. Replace Print Statements
@@ -62,10 +62,10 @@ Control the verbosity of your logging output by setting the log level in the `Lo
 
 ```python
 # For detailed debugging output
-logger = Logger(log_name='my_application', log_level=logging.DEBUG).get_logger()
+logger = MyLogger(log_name='my_application', log_level=logging.DEBUG).get_logger()
 
 # For general information and above
-logger = Logger(log_name='my_application', log_level=logging.INFO).get_logger()
+logger = MyLogger(log_name='my_application', log_level=logging.INFO).get_logger()
 ```
 
 ### 4. Example Program
@@ -77,7 +77,7 @@ Here’s an example program demonstrating the setup and usage:
 from logger import Logger
 
 # Create a logger instance
-logger = Logger(log_name='my_application', log_level=logging.INFO).get_logger()
+logger = MyLogger(log_name='my_application', log_level=logging.INFO).get_logger()
 
 # Example function with debug, info, and error logs
 def example_function():

@@ -5,7 +5,7 @@ import atexit
 from datetime import datetime
 import traceback
 
-class Logger:
+class MyLogger:
     def __init__(self, log_name='app_log', log_level=logging.INFO):
         self.log_name = log_name
         self.log_level = log_level
@@ -80,7 +80,7 @@ class Logger:
 # Usage example
 if __name__ == "__main__":
     # Create a logger instance
-    logger = Logger(log_level=logging.DEBUG).get_logger()
+    logger = MyLogger(log_level=logging.DEBUG).get_logger()
 
     # Log messages with different verbosity levels
     logger.debug("This is a debug message")
