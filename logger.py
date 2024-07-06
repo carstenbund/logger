@@ -5,7 +5,7 @@ import atexit
 from datetime import datetime
 import traceback
 
-class MyLogger:
+class Logger:
     def __init__(self, log_name='app_log', log_level=logging.INFO):
         self.log_name = log_name
         self.log_level = log_level
