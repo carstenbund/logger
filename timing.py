@@ -1,7 +1,7 @@
 import time
 from functools import wraps
 from contextlib import contextmanager
-from MYLogger import Logger
+from logger import Logger
 
 log = MyLogger(log_level=logging.INFO).get_logger()
 
