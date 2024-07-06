@@ -114,7 +114,7 @@ def test_function():
 
 test_function()
 ```
-
+## Timing of Functions or Steps
 ### timing.py
 
 ```python
