@@ -115,6 +115,104 @@ def test_function():
 test_function()
 ```
 
+### timing.py
+
+```python
+import time
+from functools import wraps
+from contextlib import contextmanager
+from MYLogger import Logger
+
+logger = Logger()
+
+def time_function(func):
+	@wraps(func)
+	def wrapper(*args, **kwargs):
+		start_time = time.time()
+		result = func(*args, **kwargs)
+		end_time = time.time()
+		elapsed_time = end_time - start_time
+		logger.log(f"[{func.__name__}] Elapsed time: {elapsed_time:.4f} seconds")
+		return result
+	return wrapper
+
+@contextmanager
+def time_step(name):
+	start_time = time.time()
+	try:
+		yield
+	finally:
+		end_time = time.time()
+		elapsed_time = end_time - start_time
+		logger.log(f"[{name}] Elapsed time: {elapsed_time:.4f} seconds")
+```
+
+### Usage
+
+#### Timing Entire Functions
+
+Use the `time_function` decorator to measure and log the execution time of entire functions:
+	
+```python
+from timing import time_function
+
+@time_function
+def some_function():
+	# Your code here
+	time.sleep(2)
+	
+some_function()
+```
+
+#### Timing Individual Steps Within Functions
+
+Use the `time_step` context manager to measure and log the execution time of specific steps within a function:
+	
+```python
+from timing import time_step
+
+def complex_function():
+	with time_step("Step 1: Initialization"):
+		# Step 1 code
+		time.sleep(1)  # Simulating a time-consuming step
+		
+	with time_step("Step 2: Processing"):
+		# Step 2 code
+		time.sleep(2)  # Simulating another time-consuming step
+		
+	with time_step("Step 3: Finalization"):
+		# Step 3 code
+		time.sleep(1.5)  # Simulating the final step
+		
+complex_function()
+```
+
+#### Combining Both
+
+You can combine both the `time_function` decorator and the `time_step` context manager to get detailed timing logs for both the overall function and individual steps:
+	
+```python
+from timing import time_function, time_step
+
+@time_function
+def complex_function():
+	with time_step("Step 1: Initialization"):
+		# Step 1 code
+		time.sleep(1)  # Simulating a time-consuming step
+		
+	with time_step("Step 2: Processing"):
+		# Step 2 code
+		time.sleep(2)  # Simulating another time-consuming step
+		
+	with time_step("Step 3: Finalization"):
+		# Step 3 code
+		time.sleep(1.5)  # Simulating the final step
+		
+complex_function()
+```
+
+
+
 ## Contributing
 
 Feel free to submit issues or pull requests if you find any bugs or have suggestions for improvements.
