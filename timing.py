@@ -3,7 +3,7 @@ from functools import wraps
 from contextlib import contextmanager
 from MYLogger import Logger
 
-logger = Logger()
+log = MyLogger(log_level=logging.INFO).get_logger()
 
 def time_function(func):
     @wraps(func)
@@ -12,7 +12,7 @@ def time_function(func):
         result = func(*args, **kwargs)
         end_time = time.time()
         elapsed_time = end_time - start_time
-        log.log(f"[{func.__name__}] Elapsed time: {elapsed_time:.4f} seconds")
+        log.info(f"[{func.__name__}] Elapsed time: {elapsed_time:.4f} seconds")
         return result
     return wrapper
 
@@ -24,5 +24,5 @@ def time_step(name):
     finally:
         end_time = time.time()
         elapsed_time = end_time - start_time
-        log.log(f"[{name}] Elapsed time: {elapsed_time:.4f} seconds")
+        log.info(f"[{name}] Elapsed time: {elapsed_time:.4f} seconds")
         
